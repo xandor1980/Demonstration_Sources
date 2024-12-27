@@ -18,3 +18,33 @@ The datasheet shows the characters and the index number.
 
 image::Russian_charset.jpg[display,50%,align="center"] 
 
+Sample program:
+
+#chip mega328p, 16
+
+#include <lcd_rus.h> // библиотека для русского LCD типа 1602
+//настройки  i2c
+#define I2C_MODE Master
+#define I2C_DATA PORTC.4
+#define I2C_CLOCK PORTC.5
+#define I2C_DISABLE_INTERRUPTS ON
+
+//настройки LCD
+#define LCD_IO 10
+#define LCD_I2C_Address 0x4E // адрес дисплея
+
+Do Forever
+// пример кода для LCD с русскими буквами (писать только в кодировке Windows 1251 !!!)
+CLS
+PrintR "Привет, друг!"
+Wait 600 ms
+Locate 1,0
+PrintR "Как твои дела?"
+Wait 600 ms
+Locate 2,0
+PrintR "Hi, friend!"
+Wait 600 ms
+Locate 3,0 
+PrintR "How are you?"
+Wait 10 s
+Loop
